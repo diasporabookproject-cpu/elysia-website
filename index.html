@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elysia — Bedtime stories for proud roots and open minds</title>
+    <meta name="description" content="Elysia develops beautifully illustrated story apps that celebrate traditional cultures worldwide. Discover Noor Maroc and Cocorico!">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-primary: #1B3A4B;
+            --color-accent: #E8985E;
+            --color-accent-dark: #D4803F;
+            --color-warm: #F5E6D3;
+            --color-light: #FDF8F3;
+            --color-text: #2C2C2C;
+            --color-text-light: #6B6B6B;
+            --color-white: #FFFFFF;
+            --color-noor: #C2703A;
+            --color-noor-bg: #FFF4EC;
+            --color-cocorico: #2E5FA1;
+            --color-cocorico-bg: #EEF3FA;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+            --max-width: 1200px;
+            --section-padding: 100px 24px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: var(--color-accent-dark); text-decoration: none; }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(253, 248, 243, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(27, 58, 75, 0.06);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.08); }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.02em;
+        }
+        .nav-logo span { color: var(--color-accent); }
+
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-text-light);
+            transition: color 0.2s;
+            letter-spacing: 0.01em;
+        }
+        .nav-links a:hover { color: var(--color-primary); }
+
+        .lang-toggle {
+            display: flex;
+            background: rgba(27, 58, 75, 0.07);
+            border-radius: 20px;
+            padding: 3px;
+            cursor: pointer;
+        }
+        .lang-toggle button {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            color: var(--color-text-light);
+            border-radius: 17px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .lang-toggle button.active {
+            background: var(--color-white);
+            color: var(--color-primary);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Mobile menu */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .mobile-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--color-primary);
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 24px 80px;
+            background: linear-gradient(135deg, var(--color-light) 0%, var(--color-warm) 50%, #F0DCC8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 200%;
+            background: radial-gradient(ellipse, rgba(232,152,94,0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text { position: relative; z-index: 2; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(27, 58, 75, 0.08);
+            color: var(--color-primary);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--color-accent);
+        }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--color-text-light);
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 500px;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(27, 58, 75, 0.25);
+        }
+        .hero-cta:hover {
+            background: #244D63;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(27, 58, 75, 0.35);
+        }
+        .hero-cta svg { width: 18px; height: 18px; }
+
+        .hero-images {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            z-index: 1;
+        }
+        .hero-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+            transition: transform 0.4s ease;
+        }
+        .hero-img:hover { transform: translateY(-4px); }
+        .hero-img:nth-child(2) { margin-top: 40px; }
+        .hero-img:nth-child(3) { margin-top: -20px; }
+        .hero-img img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        /* ===== SECTION SHARED ===== */
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+            max-width: 640px;
+        }
+
+        /* ===== ABOUT / MISSION ===== */
+        .about {
+            padding: var(--section-padding);
+            background: var(--color-white);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .about-visual {
+            position: relative;
+        }
+        .about-visual img {
+            border-radius: 24px;
+            box-shadow: 0 16px 60px rgba(0,0,0,0.1);
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: top center;
+        }
+        .about-visual::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            right: -16px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--color-accent);
+            border-radius: 24px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 36px;
+        }
+        .value-card {
+            background: var(--color-light);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .value-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--color-warm);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .value-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+        }
+        .value-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products { padding: var(--section-padding); }
+        .products-header { text-align: center; margin-bottom: 60px; }
+        .products-header .section-desc { margin: 0 auto; }
+
+        /* Product: Noor */
+        .product-block {
+            border-radius: 32px;
+            padding: 60px;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-noor { background: var(--color-noor-bg); }
+        .product-cocorico { background: var(--color-cocorico-bg); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .product-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+        .badge-live {
+            background: rgba(76, 175, 80, 0.12);
+            color: #2E7D32;
+        }
+        .badge-live::before {
+            content: '';
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: inline-block;
+        }
+        .badge-dev {
+            background: rgba(46, 95, 161, 0.12);
+            color: var(--color-cocorico);
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .noor-title { color: var(--color-noor); }
+        .cocorico-title { color: var(--color-cocorico); }
+
+        .product-desc {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+        .product-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.92rem;
+            color: var(--color-text);
+        }
+        .product-features li::before {
+            content: '';
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+        .product-noor .product-features li::before {
+            background: rgba(194, 112, 58, 0.15);
+        }
+        .product-cocorico .product-features li::before {
+            background: rgba(46, 95, 161, 0.12);
+        }
+
+        .feature-check {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+        }
+        .product-noor .feature-check { background: rgba(194, 112, 58, 0.15); color: var(--color-noor); }
+        .product-cocorico .feature-check { background: rgba(46, 95, 161, 0.12); color: var(--color-cocorico); }
+
+        .product-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.92rem;
+            color: var(--color-text);
+        }
+        .product-features li::before { display: none; }
+
+        .btn-product {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .btn-noor {
+            background: var(--color-noor);
+            color: var(--color-white);
+            box-shadow: 0 4px 16px rgba(194, 112, 58, 0.3);
+        }
+        .btn-noor:hover { background: #A8602E; transform: translateY(-2px); }
+        .btn-cocorico {
+            background: var(--color-cocorico);
+            color: var(--color-white);
+            box-shadow: 0 4px 16px rgba(46, 95, 161, 0.3);
+        }
+        .btn-cocorico:hover { background: #234D87; transform: translateY(-2px); }
+
+        .product-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .product-gallery img {
+            border-radius: 16px;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            object-position: top center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .product-gallery img:hover { transform: scale(1.03); }
+        .product-gallery img:first-child {
+            grid-column: 1 / -1;
+            aspect-ratio: 16 / 9;
+        }
+
+        /* ===== CONTACT ===== */
+        .contact {
+            padding: var(--section-padding);
+            background: var(--color-primary);
+            color: var(--color-white);
+            text-align: center;
+        }
+        .contact .section-label { color: var(--color-accent); }
+        .contact .section-title { color: var(--color-white); }
+        .contact .section-desc { color: rgba(255,255,255,0.7); margin: 0 auto 40px; }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 36px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .contact-card:hover { background: rgba(255,255,255,0.1); }
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(232, 152, 94, 0.15);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.4rem;
+        }
+        .contact-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+        .contact-card p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .contact-link {
+            color: var(--color-accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .contact-link:hover { color: #F0A876; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #142D3A;
+            color: rgba(255,255,255,0.5);
+            padding: 40px 24px;
+        }
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.8);
+        }
+        .footer-logo span { color: var(--color-accent); }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        .footer-links a {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: rgba(255,255,255,0.8); }
+        footer .copyright {
+            width: 100%;
+            text-align: center;
+            padding-top: 24px;
+            margin-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.8rem;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-subtitle { margin: 0 auto 36px; }
+            .hero-images { max-width: 500px; margin: 40px auto 0; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-visual { order: -1; }
+            .about-visual img { aspect-ratio: 4 / 3; }
+            .product-grid { grid-template-columns: 1fr; }
+            .product-block { padding: 40px 24px; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            :root { --section-padding: 60px 16px; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: var(--color-light);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(0,0,0,0.08);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            }
+            .mobile-toggle { display: flex; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-images { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .hero-img img { aspect-ratio: 1 / 1; }
+            .about-values { grid-template-columns: 1fr; }
+            .product-gallery img:first-child { aspect-ratio: 3 / 2; }
+            .product-gallery img { aspect-ratio: 1 / 1; }
+            .product-title { font-size: 1.8rem; }
+        }
+
+        /* ===== LEGAL PAGE ===== */
+        .legal-page {
+            padding: 120px 24px 80px;
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+        }
+        .legal-page.active { display: block; }
+        .legal-page h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 24px;
+        }
+        .legal-page h3 {
+            font-size: 1.1rem;
+            color: var(--color-primary);
+            margin: 24px 0 8px;
+        }
+        .legal-page p {
+            font-size: 0.92rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== NAVIGATION ===== -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" onclick="showMain()">Elysia<span>.</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" onclick="showMain()" data-en="Our Mission" data-fr="Notre Mission">Our Mission</a></li>
+                <li><a href="#products" onclick="showMain()" data-en="Products" data-fr="Produits">Products</a></li>
+                <li><a href="#contact" onclick="showMain()" data-en="Contact" data-fr="Contact">Contact</a></li>
+                <li>
+                    <div class="lang-toggle">
+                        <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+                        <button id="btn-fr" onclick="setLang('fr')">FR</button>
+                    </div>
+                </li>
+            </ul>
+            <button class="mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="mainContent">
+        <!-- HERO -->
+        <section class="hero" id="hero">
+            <div class="hero-inner">
+                <div class="hero-text fade-up">
+                    <span class="hero-badge" data-en="Story Apps for Kids" data-fr="Applications d'histoires pour enfants">Story Apps for Kids</span>
+                    <h1 data-en="Bedtime stories for <em>proud roots</em> and open minds" data-fr="Les histoires du soir pour grandir <em>fiers de ses racines</em>, ouvert sur le monde">Bedtime stories for <em>proud roots</em> and open minds</h1>
+                    <p class="hero-subtitle" data-en="Elysia creates beautifully illustrated story apps that celebrate traditional cultures worldwide — helping children discover their heritage through the magic of bedtime stories." data-fr="Elysia cr&eacute;e des applications d'histoires magnifiquement illustr&eacute;es qui c&eacute;l&egrave;brent les cultures traditionnelles du monde entier — aidant les enfants &agrave; d&eacute;couvrir leur patrimoine &agrave; travers la magie des histoires du soir.">Elysia creates beautifully illustrated story apps that celebrate traditional cultures worldwide — helping children discover their heritage through the magic of bedtime stories.</p>
+                    <a href="#products" class="hero-cta" data-en="Discover our apps" data-fr="D&eacute;couvrir nos apps">
+                        Discover our apps
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                <div class="hero-images fade-up">
+                    <div class="hero-img"><img src="images/mosque-family.jpg" alt="Family discovering Moroccan heritage" loading="lazy"></div>
+                    <div class="hero-img"><img src="images/heroine-horse.jpg" alt="Heroine riding through fields" loading="lazy"></div>
+                    <div class="hero-img"><img src="images/tea-grandpa.jpg" alt="Grandpa sharing tea tradition" loading="lazy"></div>
+                    <div class="hero-img"><img src="images/girl-landscape.jpg" alt="Child exploring nature" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-visual fade-up">
+                        <img src="images/explorer.jpg" alt="Illustrated explorer" loading="lazy">
+                    </div>
+                    <div class="fade-up">
+                        <span class="section-label" data-en="About Elysia" data-fr="&Agrave; propos d'Elysia">About Elysia</span>
+                        <h2 class="section-title" data-en="Celebrating cultures through the art of storytelling" data-fr="C&eacute;l&eacute;brer les cultures par l'art du r&eacute;cit">Celebrating cultures through the art of storytelling</h2>
+                        <p class="section-desc" data-en="Elysia SAS is a French company that develops story apps for children. We believe that the rise of artificial intelligence unlocks new possibilities for creating amazing content — from tailored stories with stunning illustrations to interactive experiences. We leverage cutting-edge technology to make cultural education engaging, accessible, and scalable." data-fr="Elysia SAS est une entreprise fran&ccedil;aise qui d&eacute;veloppe des applications d'histoires pour enfants. Nous croyons que l'essor de l'intelligence artificielle ouvre de nouvelles possibilit&eacute;s pour cr&eacute;er des contenus exceptionnels — des histoires sur mesure avec des illustrations magnifiques aux exp&eacute;riences interactives. Nous utilisons les technologies de pointe pour rendre l'&eacute;ducation culturelle captivante, accessible et modulable.">Elysia SAS is a French company that develops story apps for children. We believe that the rise of artificial intelligence unlocks new possibilities for creating amazing content — from tailored stories with stunning illustrations to interactive experiences. We leverage cutting-edge technology to make cultural education engaging, accessible, and scalable.</p>
+
+                        <div class="about-values">
+                            <div class="value-card">
+                                <div class="value-icon">&#x1F30D;</div>
+                                <h4 data-en="Cultural Pride" data-fr="Fiert&eacute; culturelle">Cultural Pride</h4>
+                                <p data-en="Stories rooted in real traditions, celebrating the richness of each culture." data-fr="Des histoires ancr&eacute;es dans de vraies traditions, c&eacute;l&eacute;brant la richesse de chaque culture.">Stories rooted in real traditions, celebrating the richness of each culture.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">&#x1F4D6;</div>
+                                <h4 data-en="Bedtime Ritual" data-fr="Rituel du soir">Bedtime Ritual</h4>
+                                <p data-en="Short, calming stories designed for the precious bedtime routine." data-fr="Des histoires courtes et apaisantes con&ccedil;ues pour le pr&eacute;cieux rituel du coucher.">Short, calming stories designed for the precious bedtime routine.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">&#x1F46A;</div>
+                                <h4 data-en="Family Bond" data-fr="Lien familial">Family Bond</h4>
+                                <p data-en="Each story becomes a shared moment between parent and child." data-fr="Chaque histoire devient un moment de complicit&eacute; entre parent et enfant.">Each story becomes a shared moment between parent and child.</p>
+                            </div>
+                            <div class="value-card">
+                                <div class="value-icon">&#x2728;</div>
+                                <h4 data-en="Open Minds" data-fr="Esprits ouverts">Open Minds</h4>
+                                <p data-en="Building bridges between heritage and the wider world." data-fr="Construire des ponts entre le patrimoine et le monde.">Building bridges between heritage and the wider world.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS -->
+        <section class="products" id="products">
+            <div class="container">
+                <div class="products-header fade-up">
+                    <span class="section-label" data-en="Our Products" data-fr="Nos Produits">Our Products</span>
+                    <h2 class="section-title" data-en="Apps that bring culture to life" data-fr="Des apps qui font vivre la culture">Apps that bring culture to life</h2>
+                    <p class="section-desc" data-en="Each Elysia app is a curated universe of stories, illustrations, and knowledge — designed to fit naturally into the bedtime routine." data-fr="Chaque application Elysia est un univers de r&eacute;cits, d'illustrations et de savoir — con&ccedil;u pour s'int&eacute;grer naturellement dans le rituel du coucher.">Each Elysia app is a curated universe of stories, illustrations, and knowledge — designed to fit naturally into the bedtime routine.</p>
+                </div>
+
+                <!-- NOOR MAROC -->
+                <div class="product-block product-noor fade-up" id="noor">
+                    <div class="product-grid">
+                        <div>
+                            <span class="product-badge badge-live" data-en="Available Now" data-fr="Disponible maintenant">Available Now</span>
+                            <h3 class="product-title noor-title">Noor Maroc</h3>
+                            <p class="product-desc" data-en="An illustrated bedtime stories app rooted in Moroccan culture, created for families wherever they live who want their children to feel both deeply connected to Morocco and open to the wider world." data-fr="Une application d'histoires du soir illustr&eacute;es, enracin&eacute;es dans la culture marocaine, cr&eacute;&eacute;e pour les familles o&ugrave; qu'elles vivent, qui veulent que leurs enfants se sentent &agrave; la fois profond&eacute;ment connect&eacute;s au Maroc et ouverts sur le monde.">An illustrated bedtime stories app rooted in Moroccan culture, created for families wherever they live who want their children to feel both deeply connected to Morocco and open to the wider world.</p>
+                            <ul class="product-features">
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Themed collections: tales, heroes, cities, celebrations, arts" data-fr="Collections th&eacute;matiques : contes, h&eacute;ros, villes, f&ecirc;tes, arts">Themed collections: tales, heroes, cities, celebrations, arts</span>
+                                </li>
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="5–10 minute stories, perfect for bedtime" data-fr="Histoires de 5 &agrave; 10 minutes, parfaites pour le coucher">5–10 minute stories, perfect for bedtime</span>
+                                </li>
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Beautiful illustrations inspired by Moroccan art" data-fr="Illustrations magnifiques inspir&eacute;es de l'art marocain">Beautiful illustrations inspired by Moroccan art</span>
+                                </li>
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Parent-child discussion prompts after each story" data-fr="Questions de discussion parent-enfant apr&egrave;s chaque histoire">Parent-child discussion prompts after each story</span>
+                                </li>
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Ages 4–10 | iOS & Android" data-fr="&Acirc;ges 4&ndash;10 | iOS & Android">&Acirc;ges 4–10 | iOS & Android</span>
+                                </li>
+                            </ul>
+                            <a href="https://noor-maroc.com/" class="btn-product btn-noor" target="_blank" data-en="Visit Noor Maroc" data-fr="Visiter Noor Maroc">
+                                Visit Noor Maroc
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+                            </a>
+                        </div>
+                        <div class="product-gallery">
+                            <img src="images/mosque-family.jpg" alt="Noor Maroc - Family discovering heritage" loading="lazy">
+                            <img src="images/boy-food.jpg" alt="Noor Maroc - Moroccan traditions" loading="lazy">
+                            <img src="images/tea-grandpa.jpg" alt="Noor Maroc - Sharing culture" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COCORICO -->
+                <div class="product-block product-cocorico fade-up" id="cocorico">
+                    <div class="product-grid">
+                        <div class="product-gallery" style="order: -1;">
+                            <img src="images/heroine-horse.jpg" alt="Cocorico - French heroines" loading="lazy">
+                            <img src="images/lion.jpg" alt="Cocorico - Stories and legends" loading="lazy">
+                            <img src="images/girl-landscape.jpg" alt="Cocorico - Exploring France" loading="lazy">
+                        </div>
+                        <div>
+                            <span class="product-badge badge-dev" data-en="Coming Soon" data-fr="Bient&ocirc;t disponible">Coming Soon</span>
+                            <h3 class="product-title cocorico-title">Cocorico!</h3>
+                            <p class="product-desc" data-en="An illustrated bedtime stories app rooted in French culture, created for families wherever they live who want their children to feel both deeply connected to France and open to the wider world. Reimagined tales, heroes, cities, celebrations, and everyday traditions." data-fr="Une application d'histoires du soir illustr&eacute;es, enracin&eacute;es dans la culture fran&ccedil;aise, cr&eacute;&eacute;e pour les familles o&ugrave; qu'elles vivent, qui veulent que leurs enfants se sentent profond&eacute;ment connect&eacute;s &agrave; la France et ouverts sur le monde. Contes revisit&eacute;s, h&eacute;ros, villes, f&ecirc;tes et traditions du quotidien.">An illustrated bedtime stories app rooted in French culture, created for families wherever they live who want their children to feel both deeply connected to France and open to the wider world. Reimagined tales, heroes, cities, celebrations, and everyday traditions.</p>
+                            <ul class="product-features">
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Stories celebrating French heritage and traditions" data-fr="Des histoires c&eacute;l&eacute;brant le patrimoine et les traditions fran&ccedil;aises">Stories celebrating French heritage and traditions</span>
+                                </li>
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Designed for the French diaspora worldwide" data-fr="Con&ccedil;u pour la diaspora fran&ccedil;aise dans le monde">Designed for the French diaspora worldwide</span>
+                                </li>
+                                <li>
+                                    <span class="feature-check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+                                    <span data-en="Same beloved bedtime format as Noor" data-fr="Le m&ecirc;me format d'histoires du soir que Noor">Same beloved bedtime format as Noor</span>
+                                </li>
+                            </ul>
+                            <a href="#contact" class="btn-product btn-cocorico" data-en="Get notified at launch" data-fr="&Ecirc;tre inform&eacute; au lancement">
+                                Get notified at launch
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="fade-up">
+                    <span class="section-label" data-en="Get in Touch" data-fr="Nous contacter">Get in Touch</span>
+                    <h2 class="section-title" data-en="Let's write the next chapter together" data-fr="&Eacute;crivons le prochain chapitre ensemble">Let's write the next chapter together</h2>
+                    <p class="section-desc" data-en="Have a question, a culture to suggest, or feedback to share? We'd love to hear from you." data-fr="Une question, une culture &agrave; sugg&eacute;rer, ou un retour &agrave; partager ? Nous serions ravis de vous entendre.">Have a question, a culture to suggest, or feedback to share? We'd love to hear from you.</p>
+                </div>
+                <div class="contact-grid fade-up">
+                    <div class="contact-card">
+                        <div class="contact-icon">&#x2709;&#xFE0F;</div>
+                        <h3 data-en="General Inquiries" data-fr="Contact g&eacute;n&eacute;ral">General Inquiries</h3>
+                        <p data-en="For partnerships, press, or any questions about Elysia." data-fr="Pour les partenariats, la presse, ou toute question sur Elysia.">For partnerships, press, or any questions about Elysia.</p>
+                        <a href="mailto:contact@elysia.studio" class="contact-link">contact@elysia.studio</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">&#x1F4AC;</div>
+                        <h3 data-en="Suggest a Culture" data-fr="Sugg&eacute;rer une culture">Suggest a Culture</h3>
+                        <p data-en="Tell us which culture you'd love to see celebrated next in our apps." data-fr="Dites-nous quelle culture vous aimeriez voir c&eacute;l&eacute;br&eacute;e dans nos prochaines apps.">Tell us which culture you'd love to see celebrated next in our apps.</p>
+                        <a href="mailto:stories@elysia.studio" class="contact-link">stories@elysia.studio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== LEGAL PAGE ===== -->
+    <div class="legal-page" id="legalPage">
+        <h2 data-en="Legal Notice" data-fr="Mentions l&eacute;gales">Legal Notice</h2>
+
+        <h3 data-en="Company Information" data-fr="Informations sur l'entreprise">Company Information</h3>
+        <p data-en="<strong>Elysia SAS</strong><br>A French simplified joint-stock company (Soci&eacute;t&eacute; par Actions Simplifi&eacute;e)<br>SIRET: 941 355 976<br>Registered in France<br>Contact: <a href='mailto:contact@elysia.studio'>contact@elysia.studio</a>" data-fr="<strong>Elysia SAS</strong><br>Soci&eacute;t&eacute; par Actions Simplifi&eacute;e de droit fran&ccedil;ais<br>SIRET : 941 355 976<br>Immatricul&eacute;e en France<br>Contact : <a href='mailto:contact@elysia.studio'>contact@elysia.studio</a>"><strong>Elysia SAS</strong><br>A French simplified joint-stock company (Soci&eacute;t&eacute; par Actions Simplifi&eacute;e)<br>SIRET: 941 355 976<br>Registered in France<br>Contact: <a href="mailto:contact@elysia.studio">contact@elysia.studio</a></p>
+
+        <h3 data-en="Hosting" data-fr="H&eacute;bergement">Hosting</h3>
+        <p data-en="This website is hosted by IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, Germany." data-fr="Ce site est h&eacute;berg&eacute; par IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, Allemagne.">This website is hosted by IONOS SE, Elgendorfer Str. 57, 56410 Montabaur, Germany.</p>
+
+        <h3 data-en="Intellectual Property" data-fr="Propri&eacute;t&eacute; intellectuelle">Intellectual Property</h3>
+        <p data-en="All content on this website, including text, graphics, illustrations, logos, and software, is the property of Elysia SAS and is protected by French and international intellectual property laws. Any reproduction without prior written consent is prohibited." data-fr="Tout le contenu de ce site, y compris les textes, graphismes, illustrations, logos et logiciels, est la propri&eacute;t&eacute; d'Elysia SAS et est prot&eacute;g&eacute; par les lois fran&ccedil;aises et internationales sur la propri&eacute;t&eacute; intellectuelle. Toute reproduction sans autorisation &eacute;crite pr&eacute;alable est interdite.">All content on this website, including text, graphics, illustrations, logos, and software, is the property of Elysia SAS and is protected by French and international intellectual property laws. Any reproduction without prior written consent is prohibited.</p>
+
+        <h3 data-en="Personal Data" data-fr="Donn&eacute;es personnelles">Personal Data</h3>
+        <p data-en="This website does not collect personal data through forms or cookies. If you contact us by email, your information will only be used to respond to your inquiry in accordance with the GDPR (EU Regulation 2016/679)." data-fr="Ce site ne collecte pas de donn&eacute;es personnelles via des formulaires ou des cookies. Si vous nous contactez par email, vos informations ne seront utilis&eacute;es que pour r&eacute;pondre &agrave; votre demande, conform&eacute;ment au RGPD (R&egrave;glement UE 2016/679).">This website does not collect personal data through forms or cookies. If you contact us by email, your information will only be used to respond to your inquiry in accordance with the GDPR (EU Regulation 2016/679).</p>
+
+        <p style="margin-top: 32px;"><a href="#" onclick="showMain(); return false;" style="color: var(--color-accent);" data-en="&larr; Back to homepage" data-fr="&larr; Retour &agrave; l'accueil">&larr; Back to homepage</a></p>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-logo">Elysia<span>.</span></div>
+            <ul class="footer-links">
+                <li><a href="#" onclick="showLegal(); return false;" data-en="Legal Notice" data-fr="Mentions l&eacute;gales">Legal Notice</a></li>
+                <li><a href="#" onclick="showPrivacy(); return false;" data-en="Privacy Policy" data-fr="Politique de confidentialit&eacute;">Privacy Policy</a></li>
+                <li><a href="mailto:contact@elysia.studio" data-en="Contact" data-fr="Contact">Contact</a></li>
+            </ul>
+            <div class="copyright">&copy; 2025 Elysia SAS. <span data-en="All rights reserved." data-fr="Tous droits r&eacute;serv&eacute;s.">All rights reserved.</span></div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== LANGUAGE TOGGLE =====
+        let currentLang = 'en';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text) {
+                    if (el.tagName === 'A' && el.children.length > 0) {
+                        // Preserve child elements (like SVG icons)
+                        const children = Array.from(el.children);
+                        el.innerHTML = text;
+                        children.forEach(child => {
+                            if (child.tagName === 'svg' || child.tagName === 'SVG') {
+                                el.appendChild(child);
+                            }
+                        });
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+            });
+
+            // Update page title
+            document.title = lang === 'fr'
+                ? 'Elysia — Les histoires du soir pour grandir fiers de ses racines, ouvert sur le monde'
+                : 'Elysia — Bedtime stories for proud roots and open minds';
+        }
+
+        // ===== MOBILE MENU =====
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        // ===== SCROLL EFFECTS =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        });
+
+        // ===== FADE-UP ANIMATION =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // ===== LEGAL PAGE TOGGLE =====
+        function showLegal() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('legalPage').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function showPrivacy() {
+            // Same as legal for now (single company policy)
+            showLegal();
+        }
+
+        function showMain() {
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('legalPage').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
