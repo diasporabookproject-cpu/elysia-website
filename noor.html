@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noor Maroc — Support | Elysia</title>
+    <meta name="description" content="Support et aide pour l'application Noor Maroc. Contactez-nous pour toute question.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --color-noor: #C2703A;
+            --color-noor-light: #FFF4EC;
+            --color-primary: #1B3A4B;
+            --color-text: #2C2C2C;
+            --color-text-light: #6B6B6B;
+            --color-light: #FDF8F3;
+            --color-white: #FFFFFF;
+            --font-heading: 'Playfair Display', Georgia, serif;
+            --font-body: 'Inter', -apple-system, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background: var(--color-light);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a { color: var(--color-noor); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Header */
+        .header {
+            background: var(--color-white);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            padding: 16px 24px;
+        }
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+        .logo span { color: var(--color-noor); }
+        .back-link {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--color-noor-light) 0%, var(--color-light) 100%);
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-noor);
+            color: var(--color-white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-noor);
+            margin-bottom: 12px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .section {
+            background: var(--color-white);
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section h2 .icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-noor-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .section p, .section li {
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        .section ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+        .section ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .section ul li:last-child { border-bottom: none; }
+
+        /* Contact card */
+        .contact-card {
+            background: var(--color-noor);
+            color: var(--color-white);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+        }
+        .contact-card h2 {
+            color: var(--color-white);
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .contact-card p {
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 20px;
+        }
+        .contact-email {
+            display: inline-block;
+            background: var(--color-white);
+            color: var(--color-noor);
+            font-weight: 600;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+        .contact-email:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Links section */
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .link-card {
+            background: var(--color-light);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .link-card:hover {
+            background: var(--color-noor-light);
+            text-decoration: none;
+        }
+        .link-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+        .link-card span {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-primary);
+            color: rgba(255,255,255,0.6);
+            padding: 32px 24px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .footer a { color: rgba(255,255,255,0.8); }
+        .footer-links {
+            margin-bottom: 16px;
+        }
+        .footer-links a {
+            margin: 0 12px;
+        }
+
+        /* App badges */
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        .app-badge {
+            height: 44px;
+            border-radius: 8px;
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .app-badge:hover { text-decoration: none; opacity: 0.9; }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .links-grid { grid-template-columns: 1fr; }
+            .section { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">Elysia<span>.</span></a>
+            <a href="index.html" class="back-link">← Retour au site</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <span class="hero-badge">Application iOS & Android</span>
+        <h1>Noor Maroc</h1>
+        <p>Histoires illustrées du soir pour découvrir la culture et l'histoire du Maroc en famille.</p>
+        <div class="app-badges">
+            <a href="https://apps.apple.com/app/noor-maroc" class="app-badge" target="_blank">
+                <span>📱</span> App Store
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=studio.elysia.noormaroc" class="app-badge" target="_blank">
+                <span>📱</span> Google Play
+            </a>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <main class="content">
+        <!-- About -->
+        <div class="section">
+            <h2><span class="icon">📖</span> À propos de Noor</h2>
+            <p>Noor Maroc est une application d'histoires illustrées pour enfants de 4 à 10 ans. Chaque soir, découvrez une nouvelle histoire célébrant la culture, l'histoire et les traditions du Maroc.</p>
+            <ul>
+                <li><strong>150+ histoires</strong> — Contes, héros, villes, fêtes, arts et patrimoine</li>
+                <li><strong>Illustrations originales</strong> — Créées spécialement pour chaque histoire</li>
+                <li><strong>Narration audio</strong> — Écoutez les histoires racontées</li>
+                <li><strong>Encart parent</strong> — Questions pour discuter ensemble après chaque histoire</li>
+            </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section">
+            <h2><span class="icon">❓</span> Questions fréquentes</h2>
+            <ul>
+                <li>
+                    <strong>Comment fonctionne l'abonnement ?</strong><br>
+                    Noor Premium vous donne accès à toutes les histoires. L'abonnement se renouvelle automatiquement et peut être annulé à tout moment depuis les réglages de votre appareil.
+                </li>
+                <li>
+                    <strong>Puis-je essayer avant de m'abonner ?</strong><br>
+                    Oui, plusieurs histoires sont accessibles gratuitement. Vous pouvez découvrir l'application avant de vous abonner.
+                </li>
+                <li>
+                    <strong>L'application fonctionne-t-elle hors connexion ?</strong><br>
+                    Les histoires nécessitent une connexion internet pour charger les illustrations et l'audio.
+                </li>
+                <li>
+                    <strong>Comment annuler mon abonnement ?</strong><br>
+                    Sur iPhone/iPad : Réglages → Votre nom → Abonnements<br>
+                    Sur Android : Google Play Store → Menu → Abonnements
+                </li>
+                <li>
+                    <strong>Comment restaurer mes achats ?</strong><br>
+                    Ouvrez l'application, allez dans Profil et appuyez sur "Restaurer mes achats".
+                </li>
+            </ul>
+        </div>
+
+        <!-- Links -->
+        <div class="section">
+            <h2><span class="icon">📄</span> Documents légaux</h2>
+            <p>Consultez nos politiques et conditions d'utilisation :</p>
+            <div class="links-grid">
+                <a href="https://noor-app-d3c4a.web.app/privacy-policy.html" class="link-card" target="_blank">
+                    <div class="icon">🔒</div>
+                    <span>Politique de confidentialité</span>
+                </a>
+                <a href="https://noor-app-d3c4a.web.app/terms-of-use.html" class="link-card" target="_blank">
+                    <div class="icon">📋</div>
+                    <span>Conditions d'utilisation</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div class="section contact-card">
+            <h2><span class="icon" style="background: rgba(255,255,255,0.2);">💬</span> Besoin d'aide ?</h2>
+            <p>Notre équipe est là pour répondre à vos questions.<br>Nous répondons généralement sous 24 heures.</p>
+            <a href="mailto:contact@elysia.studio" class="contact-email">contact@elysia.studio</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://noor-app-d3c4a.web.app/privacy-policy.html">Politique de confidentialité</a>
+            <a href="https://noor-app-d3c4a.web.app/terms-of-use.html">Conditions d'utilisation</a>
+            <a href="index.html">Elysia.studio</a>
+        </div>
+        <p>© 2025 Elysia SAS — 149 Avenue du Maine, 75014 Paris, France</p>
+    </footer>
+</body>
+</html>
