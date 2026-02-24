@@ -34,6 +34,7 @@
             min-height: 100vh;
         }
 
+        img { max-width: 100%; display: block; }
         a { color: var(--color-noor); text-decoration: none; }
         a:hover { text-decoration: underline; }
 
@@ -86,12 +87,30 @@
             color: var(--color-noor);
             margin-bottom: 12px;
         }
-        .hero p {
+        .hero > p {
             font-size: 1.1rem;
             color: var(--color-text-light);
             max-width: 500px;
             margin: 0 auto;
         }
+
+        /* Hero images */
+        .hero-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .hero-gallery img {
+            width: 140px;
+            height: 180px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+        }
+        .hero-gallery img:nth-child(2) { transform: translateY(-10px); }
 
         /* Content */
         .content {
@@ -139,10 +158,48 @@
             margin-top: 12px;
         }
         .section ul li {
-            padding: 8px 0;
+            padding: 12px 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
         .section ul li:last-child { border-bottom: none; }
+
+        /* Illustration gallery in section */
+        .section-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .section-gallery img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+
+        /* Subscription details */
+        .subscription-box {
+            background: var(--color-noor-light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        .subscription-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--color-noor);
+            margin-bottom: 12px;
+        }
+        .subscription-box ul {
+            margin-top: 0;
+        }
+        .subscription-box li {
+            padding: 6px 0;
+            border-bottom: none;
+            font-size: 0.9rem;
+        }
 
         /* Contact card */
         .contact-card {
@@ -245,8 +302,10 @@
 
         @media (max-width: 600px) {
             .hero h1 { font-size: 2rem; }
+            .hero-gallery img { width: 100px; height: 130px; }
             .links-grid { grid-template-columns: 1fr; }
             .section { padding: 24px; }
+            .section-gallery { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -264,6 +323,11 @@
         <span class="hero-badge">Application iOS & Android</span>
         <h1>Noor Maroc</h1>
         <p>Histoires illustrées du soir pour découvrir la culture et l'histoire du Maroc en famille.</p>
+        <div class="hero-gallery">
+            <img src="images/mosque-family.jpg" alt="Famille découvrant le patrimoine marocain" loading="lazy">
+            <img src="images/heroine-horse.jpg" alt="Héroïne marocaine" loading="lazy">
+            <img src="images/tea-grandpa.jpg" alt="Tradition du thé" loading="lazy">
+        </div>
         <div class="app-badges">
             <a href="https://apps.apple.com/app/noor-maroc" class="app-badge" target="_blank">
                 <span>📱</span> App Store
@@ -279,23 +343,51 @@
         <!-- About -->
         <div class="section">
             <h2><span class="icon">📖</span> À propos de Noor</h2>
-            <p>Noor Maroc est une application d'histoires illustrées pour enfants de 4 à 10 ans. Chaque soir, découvrez une nouvelle histoire célébrant la culture, l'histoire et les traditions du Maroc.</p>
+            <p>Noor Maroc est une application d'histoires illustrées pour enfants de 6 à 12 ans. Chaque soir, découvrez une nouvelle histoire célébrant la culture, l'histoire et les traditions du Maroc.</p>
             <ul>
                 <li><strong>150+ histoires</strong> — Contes, héros, villes, fêtes, arts et patrimoine</li>
                 <li><strong>Illustrations originales</strong> — Créées spécialement pour chaque histoire</li>
                 <li><strong>Narration audio</strong> — Écoutez les histoires racontées</li>
                 <li><strong>Encart parent</strong> — Questions pour discuter ensemble après chaque histoire</li>
             </ul>
+            <div class="section-gallery">
+                <img src="images/boy-food.jpg" alt="Traditions culinaires" loading="lazy">
+                <img src="images/girl-landscape.jpg" alt="Paysages du Maroc" loading="lazy">
+                <img src="images/explorer.jpg" alt="Explorateur" loading="lazy">
+                <img src="images/lion.jpg" alt="Contes et légendes" loading="lazy">
+            </div>
+        </div>
+
+        <!-- Subscription Info (Apple requirement) -->
+        <div class="section">
+            <h2><span class="icon">⭐</span> Abonnement Noor Premium</h2>
+            <p>L'abonnement Noor Premium vous donne un accès illimité à toutes les histoires, illustrations et narrations audio de l'application.</p>
+
+            <div class="subscription-box">
+                <h3>Formules disponibles</h3>
+                <ul>
+                    <li><strong>Abonnement mensuel</strong> — 8,99 € par mois</li>
+                    <li><strong>Abonnement annuel</strong> — 49,99 € par an</li>
+                </ul>
+            </div>
+
+            <div class="subscription-box" style="margin-top: 12px;">
+                <h3>Conditions de renouvellement et d'annulation</h3>
+                <ul>
+                    <li>Le paiement est prélevé sur votre compte Apple ou Google au moment de la confirmation de l'achat.</li>
+                    <li>L'abonnement se renouvelle automatiquement à la fin de chaque période (mensuelle ou annuelle), sauf s'il est annulé au moins 24 heures avant la fin de la période en cours.</li>
+                    <li>Le renouvellement est facturé au tarif en vigueur au moment du renouvellement.</li>
+                    <li>Vous pouvez gérer et annuler votre abonnement à tout moment depuis les paramètres de votre compte sur l'App Store (iPhone/iPad) ou Google Play Store (Android).</li>
+                    <li>Aucun remboursement n'est accordé pour la période en cours après annulation. Votre accès Premium reste actif jusqu'à la fin de la période payée.</li>
+                    <li>La suppression de l'application ne résilie pas automatiquement votre abonnement.</li>
+                </ul>
+            </div>
         </div>
 
         <!-- FAQ -->
         <div class="section">
             <h2><span class="icon">❓</span> Questions fréquentes</h2>
             <ul>
-                <li>
-                    <strong>Comment fonctionne l'abonnement ?</strong><br>
-                    Noor Premium vous donne accès à toutes les histoires. L'abonnement se renouvelle automatiquement et peut être annulé à tout moment depuis les réglages de votre appareil.
-                </li>
                 <li>
                     <strong>Puis-je essayer avant de m'abonner ?</strong><br>
                     Oui, plusieurs histoires sont accessibles gratuitement. Vous pouvez découvrir l'application avant de vous abonner.
@@ -306,12 +398,16 @@
                 </li>
                 <li>
                     <strong>Comment annuler mon abonnement ?</strong><br>
-                    Sur iPhone/iPad : Réglages → Votre nom → Abonnements<br>
-                    Sur Android : Google Play Store → Menu → Abonnements
+                    <strong>Sur iPhone/iPad :</strong> Ouvrez Réglages → Appuyez sur votre nom → Abonnements → Sélectionnez Noor Premium → Annuler l'abonnement.<br>
+                    <strong>Sur Android :</strong> Ouvrez Google Play Store → Menu → Abonnements → Sélectionnez Noor Premium → Annuler l'abonnement.
                 </li>
                 <li>
                     <strong>Comment restaurer mes achats ?</strong><br>
-                    Ouvrez l'application, allez dans Profil et appuyez sur "Restaurer mes achats".
+                    Ouvrez l'application Noor, allez dans l'onglet Profil et appuyez sur "Restaurer mes achats". Assurez-vous d'être connecté avec le même compte Apple/Google utilisé lors de l'achat.
+                </li>
+                <li>
+                    <strong>L'abonnement est-il partageable en famille ?</strong><br>
+                    L'abonnement est lié à votre compte Apple ou Google. Si le partage familial est activé sur votre compte, les membres de votre famille peuvent également accéder à Noor Premium.
                 </li>
             </ul>
         </div>
@@ -335,7 +431,7 @@
         <!-- Contact -->
         <div class="section contact-card">
             <h2><span class="icon" style="background: rgba(255,255,255,0.2);">💬</span> Besoin d'aide ?</h2>
-            <p>Notre équipe est là pour répondre à vos questions.<br>Nous répondons généralement sous 24 heures.</p>
+            <p>Notre équipe est là pour répondre à vos questions.</p>
             <a href="mailto:contact@elysia.studio" class="contact-email">contact@elysia.studio</a>
         </div>
     </main>
